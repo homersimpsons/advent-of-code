@@ -1,0 +1,13 @@
+name: Continuous Integration
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v2
+        - uses: actions-rs/toolchain@v1
+          with:
+            toolchain: nightly
+        - run: for dir in ./[0-9][0-9][0-9][0-9]/day[0-9][0-9]; do (cd "$dir" && cargo +nightly run); done
